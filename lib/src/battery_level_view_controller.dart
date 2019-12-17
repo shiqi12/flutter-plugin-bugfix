@@ -1,5 +1,4 @@
 part of batterylevel; 
-import 'package:flutter/material.dart';
 
 class BatteryLevelViewController {
    StreamController _flutterToEvaluteStream;

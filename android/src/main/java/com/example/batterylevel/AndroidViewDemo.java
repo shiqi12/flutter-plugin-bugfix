@@ -47,15 +47,15 @@ public class AndroidViewDemo implements PlatformView, MethodCallHandler, StreamH
         setupViews(registrar);
     }
 
-    @Override
-    public void onInputConnectionLocked() {
-
-    }
-
-    @Override
-    public void onInputConnectionUnlocked() {
-
-    }
+//    @Override
+//    public void onInputConnectionLocked() {
+//
+//    }
+//
+//    @Override
+//    public void onInputConnectionUnlocked() {
+//
+//    }
 
     private void setupViews(final Registrar registrar) {
 
