@@ -28,15 +28,13 @@
         
         /***/
         NSString* channelName = [NSString stringWithFormat:@"flutter.io/batterylevel_view_%lld",viewId];
-        //[FlutterStandardMethodCodec sharedInstance]
-        _channel = [[FlutterMethodChannel alloc]initWithName:channelName binaryMessenger:registrar.messenger codec:NULL];
-        
+        _channel = [[FlutterMethodChannel alloc]initWithName:channelName binaryMessenger:registrar.messenger codec:[FlutterStandardMethodCodec sharedInstance]];
         
         
         typeof(self) weakSelf = self;
         [_channel setMethodCallHandler:^(FlutterMethodCall * _Nonnull call, FlutterResult  _Nonnull result) {
             if ([call.method isEqualToString:@"nativeToEvalute"] && weakSelf){
-               // weakSelf->_view.recieveTextField.text = (NSString*)call.arguments;
+                weakSelf->_view.recieveTextField.text = (NSString*)call.arguments;
             }
         }];
         
@@ -49,12 +47,13 @@
 
 - (void)clcikSendButton:(UIButton*)btn {
     //_view.sendTextField.text
-
+    [_channel invokeMethod:@"onShareResponse" arguments:_view.sendTextField.text];
 }
 
 - (void)clickSinkEventButton: (UIButton*)btn {
     if (_eventSink != NULL) {
-        _eventSink(@"clicked eventSink button");
+        _eventSink(_view.recieveTextField.text);
+//        _eventSink(@"clicked eventSink button");
     }
 }
 //***

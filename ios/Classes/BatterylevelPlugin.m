@@ -17,10 +17,9 @@
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
   if ([@"getPlatformVersion" isEqualToString:call.method]) {
     result([@"iOS " stringByAppendingString:[[UIDevice currentDevice] systemVersion]]);
-  } else if ([@"getBatterylevel" isEqualToString:call.method]) {
+  } else if ([@"getBatteryLevel" isEqualToString:call.method]) {
       int batterylevel = (int)[UIDevice currentDevice].batteryLevel;
-      NSString* str = [NSString stringWithFormat:@"%d", batterylevel];
-      result(str);
+      result(@(batterylevel));
   } else {
     result(FlutterMethodNotImplemented);
   }
